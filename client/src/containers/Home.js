@@ -4,18 +4,16 @@ import axios from 'axios';
 
 const Home = (props) => {
 
-    const [users, setUsers]=useState([])
     const [user, setUser] = useState({})
 
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         axios.get(`http://localhost:8000/api/users/${props._id}`)
             .then(res => {
                 setUser(res.data)
-                
                 console.log(user);
             })
-            
+        // eslint-disable-next-line
     }, [])
 
     return (
@@ -26,7 +24,7 @@ const Home = (props) => {
                 <p className="lead">You can start your order by clicking on the menu link and choosing your desired food category</p>
                 <hr className="my-2"></hr>
                 <p className="lead">
-                    Don't eat to much!!! 
+                    Don't eat to much!!!
                 </p>
             </div>
         </div>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from '@reach/router';
 import axios from 'axios';
 import { loadStripe } from '@stripe/stripe-js';
-import { toast } from 'react-toastify';
 import {
   Elements,
   CardElement,
@@ -50,7 +49,7 @@ const CheckoutForm = ({ amount, success, id }) => {
   );
 };
 
-const stripePromise = loadStripe('API_KEY');
+const stripePromise = loadStripe('pk_test_RcWV1eZu8nWPZBSvxQ1e0bVz008sJQH9f2');
 const Checkout = (props) => {
   const userId = localStorage.getItem('user');
   const [orders, setOrders] = useState([]);
@@ -79,8 +78,12 @@ const Checkout = (props) => {
         .filter((u) => u.customer === userId)
         .map((order, i) => {
           return (
-            <div className='col-sm-4' style={{ display: 'inline-block' }}>
-              <div className='card' key={order._id}>
+            <div
+              key={order._id}
+              className='col-sm-4'
+              style={{ display: 'inline-block' }}
+            >
+              <div className='card'>
                 <div className='card-body'>
                   <h4 className='card-title'>
                     Order number: {Math.floor(Math.random() * 1000) - 1}
@@ -90,7 +93,9 @@ const Checkout = (props) => {
                   <ul className='list-group list-group-flush'>
                     {order.products.map((item) => {
                       return (
-                        <li className='list-group-item'>{item.addedName}</li>
+                        <li key={item._id} className='list-group-item'>
+                          {item.addedName}
+                        </li>
                       );
                     })}
                   </ul>

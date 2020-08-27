@@ -4,6 +4,7 @@ const port = 8000
 const bp = require("body-parser");
 const dbname = "foods"
 const cookieParser = require("cookie-parser")
+const path = require('path')
 
 
 
@@ -21,21 +22,15 @@ app.use(express.static('./public'));
 require("./server/config/mongoose.config")(dbname)
 require('./server/routes/user.routes')(app)
 
+//Serve static assets
+if (process.env.NODE_ENV === 'production') {
+    //set static folder
+    app.use(express.static('client/build'))
 
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}
 
 app.listen(port, () => console.log(`Server has connected successfully ++++++++++++++ on port: ${port}`));
 
-// app.post('/charge', (req, res) => {
-//     const amount = 2500
-//     stripe.customers.create({
-//         email: req.body.stripeEmail,
-//         source: req.body.stripeToken
-//     })
-//         .then(customer => stripe.charges.create({
-//             amount,
-//             description: 'Some Book',
-//             currency: 'usd',
-//             customer: customer.id
-//         }))
-//         .then(charge => res.render('success'))
-// })

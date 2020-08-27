@@ -13,7 +13,7 @@ class UserController {
                 res
                     .cookie("usertoken", jwt.sign({ _id: user._id }, secret), { httpOnly: true })
                     .json({ msg: "success!", user: user });
-                    
+
             })
             .catch(err => res.json(err));
     }
@@ -45,11 +45,12 @@ class UserController {
         res.clearCookie('usertoken');
         res.sendStatus(200);
     }
-    getOne(req, res){
-        User.findById({_id:req.params.id})
-            .then(user=>res.json(user))
-            .catch(err=>res.json(err))
+    getOne(req, res) {
+        User.findById({ _id: req.params.id })
+            .then(user => res.json(user))
+            .catch(err => res.json(err))
     }
 }
+
 
 module.exports = new UserController();

@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Order = require('../models/order.model');
-const stripe = require('stripe')('SECRET_KEY')
+const stripe = require('stripe')('sk_test_Of2JoMbWy26fbznuekcOtTZ800Lb0ZJvRe')
 
 
 
