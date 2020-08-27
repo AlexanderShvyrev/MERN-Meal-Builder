@@ -34,11 +34,3 @@ if (process.env.NODE_ENV === 'production') {
 
 app.listen(port, () => console.log(`Server has connected successfully ++++++++++++++ on port: ${port}`));
 
-  // "scripts": {
-  //   "start": "node server.js",
-  //   "server": "nodemon server.js",
-  //   "client": "npm start --prefix client",
-  //   "clientinstall": "npm install --prefix client",
-  //   "dev": "concurrently \"npm run server\" \"npm run client\"",
-  //   "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
-  // },
